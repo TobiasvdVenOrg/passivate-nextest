@@ -43,7 +43,7 @@ indexmap = { workspace = true, features = ["serde"] }
 indicatif.workspace = true
 is_ci.workspace = true
 itertools.workspace = true
-miette.workspace = true
+miette = { workspace = true, features = ["fancy"] }
 newtype-uuid = { workspace = true, features = ["serde"] }
 nextest-filtering.workspace = true
 nextest-metadata.workspace = true
