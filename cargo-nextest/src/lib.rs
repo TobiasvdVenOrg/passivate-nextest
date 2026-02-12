@@ -31,13 +31,13 @@
 
 #![warn(missing_docs)]
 
-mod cargo_cli;
-mod dispatch;
+pub mod cargo_cli;
+pub mod dispatch;
 #[cfg(unix)]
 mod double_spawn;
-mod errors;
+pub mod errors;
 mod helpers;
-mod output;
+pub mod output;
 mod reuse_build;
 #[cfg(feature = "self-update")]
 mod update;
@@ -45,5 +45,5 @@ mod version;
 
 pub(crate) use dispatch::ExtractOutputFormat;
 pub use dispatch::main_impl;
-pub(crate) use errors::*;
+pub use errors::*;
 pub(crate) use output::OutputWriter;

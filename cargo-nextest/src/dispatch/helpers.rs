@@ -29,7 +29,7 @@ use std::io::Write;
 use swrite::{SWrite, swrite};
 use tracing::{debug, warn};
 
-pub(super) fn acquire_graph_data(
+pub fn acquire_graph_data(
     manifest_path: Option<&Utf8Path>,
     target_dir: Option<&Utf8Path>,
     cargo_opts: &CargoOptions,

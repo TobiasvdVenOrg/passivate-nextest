@@ -15,7 +15,7 @@ use std::{borrow::Cow, path::PathBuf};
 /// a rerun chain, these are inherited from the original run unless explicitly
 /// overridden.
 #[derive(Clone, Debug, Default, Args)]
-pub(crate) struct CargoBuildScopeOptions {
+pub struct CargoBuildScopeOptions {
     // ---
     // Package selection
     // ---
@@ -26,62 +26,62 @@ pub(crate) struct CargoBuildScopeOptions {
         group = "cargo-opts",
         help_heading = "Package selection"
     )]
-    packages: Vec<String>,
+    pub packages: Vec<String>,
 
     /// Test all packages in the workspace
     #[arg(long, group = "cargo-opts", help_heading = "Package selection")]
-    workspace: bool,
+    pub workspace: bool,
 
     /// Exclude packages from the test
     #[arg(long, group = "cargo-opts", help_heading = "Package selection")]
-    exclude: Vec<String>,
+    pub exclude: Vec<String>,
 
     /// Alias for --workspace (deprecated)
     #[arg(long, group = "cargo-opts", help_heading = "Package selection")]
-    all: bool,
+    pub all: bool,
 
     // ---
     // Target selection
     // ---
     /// Test only this package's library unit tests
     #[arg(long, group = "cargo-opts", help_heading = "Target selection")]
-    lib: bool,
+    pub lib: bool,
 
     /// Test only the specified binary
     #[arg(long, group = "cargo-opts", help_heading = "Target selection")]
-    bin: Vec<String>,
+    pub bin: Vec<String>,
 
     /// Test all binaries
     #[arg(long, group = "cargo-opts", help_heading = "Target selection")]
-    bins: bool,
+    pub bins: bool,
 
     /// Test only the specified example
     #[arg(long, group = "cargo-opts", help_heading = "Target selection")]
-    example: Vec<String>,
+    pub example: Vec<String>,
 
     /// Test all examples
     #[arg(long, group = "cargo-opts", help_heading = "Target selection")]
-    examples: bool,
+    pub examples: bool,
 
     /// Test only the specified test target
     #[arg(long, group = "cargo-opts", help_heading = "Target selection")]
-    test: Vec<String>,
+    pub test: Vec<String>,
 
     /// Test all targets
     #[arg(long, group = "cargo-opts", help_heading = "Target selection")]
-    tests: bool,
+    pub tests: bool,
 
     /// Test only the specified bench target
     #[arg(long, group = "cargo-opts", help_heading = "Target selection")]
-    bench: Vec<String>,
+    pub bench: Vec<String>,
 
     /// Test all benches
     #[arg(long, group = "cargo-opts", help_heading = "Target selection")]
-    benches: bool,
+    pub benches: bool,
 
     /// Test all targets
     #[arg(long, group = "cargo-opts", help_heading = "Target selection")]
-    all_targets: bool,
+    pub all_targets: bool,
 
     // ---
     // Feature selection
@@ -93,15 +93,15 @@ pub(crate) struct CargoBuildScopeOptions {
         group = "cargo-opts",
         help_heading = "Feature selection"
     )]
-    features: Vec<String>,
+    pub features: Vec<String>,
 
     /// Activate all available features
     #[arg(long, group = "cargo-opts", help_heading = "Feature selection")]
-    all_features: bool,
+    pub all_features: bool,
 
     /// Do not activate the `default` feature
     #[arg(long, group = "cargo-opts", help_heading = "Feature selection")]
-    no_default_features: bool,
+    pub no_default_features: bool,
 }
 
 impl CargoBuildScopeOptions {
@@ -242,10 +242,10 @@ impl CargoBuildScopeOptions {
 #[command(
     group = clap::ArgGroup::new("cargo-opts").multiple(true),
 )]
-pub(crate) struct CargoOptions {
+pub struct CargoOptions {
     /// Build scope options (package, target, and feature selection).
     #[command(flatten)]
-    pub(crate) build_scope: CargoBuildScopeOptions,
+    pub build_scope: CargoBuildScopeOptions,
 
     // jobs is handled by test runner
     /// Number of build jobs to run
@@ -256,7 +256,7 @@ pub(crate) struct CargoOptions {
         help_heading = "Compilation options",
         allow_negative_numbers = true
     )]
-    build_jobs: Option<String>,
+    pub build_jobs: Option<String>,
 
     /// Build artifacts in release mode, with optimizations
     #[arg(
@@ -265,7 +265,7 @@ pub(crate) struct CargoOptions {
         group = "cargo-opts",
         help_heading = "Compilation options"
     )]
-    release: bool,
+    pub release: bool,
 
     /// Build artifacts with the specified Cargo profile
     #[arg(
@@ -275,7 +275,7 @@ pub(crate) struct CargoOptions {
         group = "cargo-opts",
         help_heading = "Compilation options"
     )]
-    cargo_profile: Option<String>,
+    pub cargo_profile: Option<String>,
 
     /// Build for the target triple
     #[arg(
@@ -284,7 +284,7 @@ pub(crate) struct CargoOptions {
         group = "cargo-opts",
         help_heading = "Compilation options"
     )]
-    pub(crate) target: Option<String>,
+    pub target: Option<String>,
 
     /// Directory for all generated artifacts
     #[arg(
@@ -293,11 +293,11 @@ pub(crate) struct CargoOptions {
         group = "cargo-opts",
         help_heading = "Compilation options"
     )]
-    pub(crate) target_dir: Option<Utf8PathBuf>,
+    pub target_dir: Option<Utf8PathBuf>,
 
     /// Output build graph in JSON (unstable)
     #[arg(long, group = "cargo-opts", help_heading = "Compilation options")]
-    unit_graph: bool,
+    pub unit_graph: bool,
 
     /// Timing output formats (unstable) (comma separated): html, json
     #[arg(
@@ -307,20 +307,20 @@ pub(crate) struct CargoOptions {
         group = "cargo-opts",
         help_heading = "Compilation options"
     )]
-    timings: Option<Option<String>>,
+    pub timings: Option<Option<String>>,
 
     // --color is handled by runner
     /// Require Cargo.lock and cache are up to date
     #[arg(long, group = "cargo-opts", help_heading = "Manifest options")]
-    frozen: bool,
+    pub frozen: bool,
 
     /// Require Cargo.lock is up to date
     #[arg(long, group = "cargo-opts", help_heading = "Manifest options")]
-    locked: bool,
+    pub locked: bool,
 
     /// Run without accessing the network
     #[arg(long, group = "cargo-opts", help_heading = "Manifest options")]
-    offline: bool,
+    pub offline: bool,
 
     /// Cargo message format.
     ///
@@ -334,31 +334,31 @@ pub(crate) struct CargoOptions {
         group = "cargo-opts",
         help_heading = "Other Cargo options"
     )]
-    pub(crate) cargo_message_format: Vec<CargoMessageFormatOpt>,
+    pub cargo_message_format: Vec<CargoMessageFormatOpt>,
 
     //  TODO: doc?
     // no-run is handled by test runner
     /// Do not print cargo log messages (specify twice for no Cargo output at all)
     #[arg(long, action = ArgAction::Count, group = "cargo-opts", help_heading = "Other Cargo options")]
-    cargo_quiet: u8,
+    pub cargo_quiet: u8,
 
     /// Use cargo verbose output (specify twice for very verbose/build.rs output)
     #[arg(long, action = ArgAction::Count, group = "cargo-opts", help_heading = "Other Cargo options")]
-    cargo_verbose: u8,
+    pub cargo_verbose: u8,
 
     /// Ignore `rust-version` specification in packages
     #[arg(long, group = "cargo-opts", help_heading = "Other Cargo options")]
-    ignore_rust_version: bool,
+    pub ignore_rust_version: bool,
     // --message-format is captured by nextest
     /// Outputs a future incompatibility report at the end of the build
     #[arg(long, group = "cargo-opts", help_heading = "Other Cargo options")]
-    future_incompat_report: bool,
+    pub future_incompat_report: bool,
 
     // NOTE: this does not conflict with reuse build opts (not part of the cargo-opts group) since
     // we let target.runner be specified this way
     /// Override a Cargo configuration value
     #[arg(long, value_name = "KEY=VALUE", help_heading = "Other Cargo options")]
-    pub(crate) config: Vec<String>,
+    pub config: Vec<String>,
 
     /// Unstable (nightly-only) flags to Cargo, see 'cargo -Z help' for details
     #[clap(
@@ -367,7 +367,7 @@ pub(crate) struct CargoOptions {
         group = "cargo-opts",
         help_heading = "Other Cargo options"
     )]
-    unstable_flags: Vec<String>,
+    pub unstable_flags: Vec<String>,
 }
 
 #[derive(Clone, Debug)]

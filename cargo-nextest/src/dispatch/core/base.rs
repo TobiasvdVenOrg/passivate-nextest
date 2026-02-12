@@ -527,7 +527,7 @@ mod helpers {
     use std::io::{BufRead, BufReader};
 
     impl CargoOptions {
-        pub(crate) fn compute_binary_list(
+        pub fn compute_binary_list(
             &self,
             cargo_command: &str,
             graph: &PackageGraph,

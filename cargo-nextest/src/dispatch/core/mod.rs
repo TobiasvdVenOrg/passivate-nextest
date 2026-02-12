@@ -14,7 +14,7 @@ mod replay;
 mod run;
 #[cfg(test)]
 mod tests;
-mod value_enums;
+pub mod value_enums;
 
 pub(crate) use archive::{ArchiveApp, ArchiveOpts};
 pub(crate) use base::{BaseApp, current_version};
@@ -22,4 +22,4 @@ pub(crate) use filter::TestBuildFilter;
 pub(crate) use list::ListOpts;
 pub(crate) use replay::{ReplayOpts, exec_replay};
 pub(crate) use run::{App, BenchOpts, RunOpts};
-pub(crate) use value_enums::CargoMessageFormatOpt;
+pub use value_enums::CargoMessageFormatOpt;

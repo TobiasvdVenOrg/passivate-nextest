@@ -369,7 +369,7 @@ impl CargoMessageFormat {
 /// JSON modifiers can be combined:
 /// `json,json-diagnostic-short,json-diagnostic-rendered-ansi`
 #[derive(Clone, Copy, Debug, ValueEnum, Default, PartialEq, Eq, Hash)]
-pub(crate) enum CargoMessageFormatOpt {
+pub enum CargoMessageFormatOpt {
     /// Render diagnostics in the default human-readable format.
     #[default]
     Human,
